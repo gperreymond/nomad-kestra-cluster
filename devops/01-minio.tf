@@ -3,13 +3,13 @@
 // --------------------------------------------------------
 
 resource "minio_iam_user" "kestra_store" {
-  name          = "thanos-store"
+  name          = "kestra-store"
   force_destroy = true
   update_secret = true
 }
 
 resource "minio_s3_bucket" "kestra_store" {
-  bucket        = "thanos-store"
+  bucket        = "kestra-store"
   force_destroy = true
   acl           = "private"
 }
@@ -19,7 +19,7 @@ resource "minio_iam_service_account" "kestra_store" {
 }
 
 resource "minio_iam_policy" "kestra_store" {
-  name   = "thanos-store"
+  name   = "kestra-store"
   policy = <<EOF
 {
   "Version":"2012-10-17",
@@ -43,7 +43,7 @@ resource "minio_iam_user_policy_attachment" "kestra_store" {
 
 resource "null_resource" "minio" {
   depends_on = [
-    // thanos-store
+    // kestra-store
     minio_iam_user.kestra_store,
     minio_iam_service_account.kestra_store,
     minio_iam_user_policy_attachment.kestra_store,
