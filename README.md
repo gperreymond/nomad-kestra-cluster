@@ -6,8 +6,8 @@ A complete nomad kestra distibuted cluster
 
 ## Features
 
-- **Nomad Cluster**: With 3 servers, monitoring client, kestra system and kestra workers
-- **Monitoring**: Prometheus, complete Thanos implementation, Grafana
+- **Nomad Cluster**: With 3 servers
+- **Kestra Cluster**: With 3 tenants (pikachu, ronflex, rondoudou)
 
 ---
 
@@ -49,12 +49,16 @@ mc 2025-02-15T10-36-16Z
 To start the cluster, use:
 ```sh
 $ ministack --config configurations/servers/cluster.yaml --start
+# or...
+$ docker compose -f configurations/servers/.ministack/cluster.yaml down
 ```
 
 ### Stop the Cluster
 To stop the cluster, use:
 ```sh
 $ ministack --config configurations/servers/cluster.yaml --stop
+# or...
+$ docker compose -f configurations/servers/.ministack/cluster.yaml down
 ```
 
 ---
@@ -88,12 +92,6 @@ When ministack has started:
 * http://minio-webui.docker.localhost (admin/changeme)
 
 After terraform apply:
-* http://prometheus.docker.localhost
-* http://thanos-store.docker.localhost
-* http://thanos-compactor.docker.localhost
-* http://thanos-query.docker.localhost
-* http://thanos-query-frontend.docker.localhost
-* http://grafana.docker.localhost
 
 
 Everytime you add/update/remove rules or scrape configs, do a prometheus reload:

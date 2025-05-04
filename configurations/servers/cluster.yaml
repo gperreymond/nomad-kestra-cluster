@@ -35,6 +35,6 @@ services:
           - 'thanos_store_data'
           - 'thanos_compactor_data'
       - name: kestra-system
-      - name: kestra-worker-pikachu
-      - name: kestra-worker-ronflex
-      - name: kestra-worker-rondoudou
+      - name: kestra-tenant-pikachu
+      - name: kestra-tenant-ronflex
+      - name: kestra-tenant-rondoudou
