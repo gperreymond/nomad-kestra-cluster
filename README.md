@@ -48,17 +48,14 @@ mc 2025-02-15T10-36-16Z
 ### Start the Cluster
 To start the cluster, use:
 ```sh
+# first time, docker pull all images, could be long
 $ ministack --config configurations/servers/cluster.yaml --start
-# or...
-$ docker compose -f configurations/servers/.ministack/cluster.yaml down
 ```
 
 ### Stop the Cluster
 To stop the cluster, use:
 ```sh
 $ ministack --config configurations/servers/cluster.yaml --stop
-# or...
-$ docker compose -f configurations/servers/.ministack/cluster.yaml down
 ```
 
 ---

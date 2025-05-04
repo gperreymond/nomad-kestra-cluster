@@ -1,8 +1,8 @@
 // --------------------------------------------------------
-// GRAFANA
+// KESTRA
 // --------------------------------------------------------
 
-resource "random_password" "grafana_postgres" {
+resource "random_password" "kestra_postgres" {
   length  = 32
   special = false
 
@@ -11,22 +11,22 @@ resource "random_password" "grafana_postgres" {
   ]
 }
 
-resource "postgresql_role" "grafana_postgres" {
-  name     = "grafana"
+resource "postgresql_role" "kestra_postgres" {
+  name     = "kestra"
   login    = true
-  password = random_password.grafana_postgres.result
+  password = random_password.kestra_postgres.result
 
   depends_on = [
-    random_password.grafana_postgres,
+    random_password.kestra_postgres,
   ]
 }
 
-resource "postgresql_database" "grafana_postgres" {
-  name  = "grafana"
-  owner = postgresql_role.grafana_postgres.name
+resource "postgresql_database" "kestra_postgres" {
+  name  = "kestra"
+  owner = postgresql_role.kestra_postgres.name
 
   depends_on = [
-    postgresql_role.grafana_postgres,
+    postgresql_role.kestra_postgres,
   ]
 }
 
@@ -34,9 +34,9 @@ resource "null_resource" "postgres" {
   depends_on = [
     // parent
     null_resource.minio,
-    // resources: grafana
-    random_password.grafana_postgres,
-    postgresql_role.grafana_postgres,
-    postgresql_database.grafana_postgres,
+    // resources: kestra
+    random_password.kestra_postgres,
+    postgresql_role.kestra_postgres,
+    postgresql_database.kestra_postgres,
   ]
 }
